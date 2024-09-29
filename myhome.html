@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小组成员</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            background-image: url('myhome.jpg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            width: 60vw;
+            height: 60vh;
+            max-width: 800px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            overflow-y: auto;
+        }
+
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 100%;
+        }
+
+        .member {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            width: 100%;
+        }
+
+        .member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+
+        .member-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            height: 100%;
+        }
+
+        .member-info h2 {
+            margin: 0;
+            color: #555;
+            font-size: 18px;
+        }
+
+        .member-info p {
+            margin: 0;
+            color: #777;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>软件测试-x组成员</h1>
+        <div class="members-grid">
+            <div class="member">
+                <img src="zxh.jpg" alt="成员1">
+                <div class="member-info">
+                    <h2>周孝恒</h2>
+                    <p>学号：202439040149</p>
+                </div>
+            </div>
+            <div class="member">
+                <img src="jwj.jpg" alt="成员2">
+                <div class="member-info">
+                    <h2>蒋文均</h2>
+                    <p>学号：202439040145</p>
+                </div>
+            </div>
+            <div class="member">
+                <img src="hhl.jpg" alt="成员3">
+                <div class="member-info">
+                    <h2>黄和浪</h2>
+                    <p>学号：202439040139</p>
+                </div>
+            </div>
+            <div class="member">
+                <img src="background.jpg" alt="成员4">
+                <div class="member-info">
+                    <h2>随便</h2>
+                    <p>学号：202439040xxx</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
