@@ -173,7 +173,15 @@
         var isCheckboxChecked = checkbox.checked;
         // 验证是否通过
         if (!hasEmptyInput && isCorrectVerificationCode && isCheckboxChecked) {
-            this.submit(); // 提交表单
+            // this.submit(); // 提交表单
+            // 获取表单的action属性，即目标URL
+            const actionUrl = document.getElementById('loginForm').getAttribute('action');
+            // 使用window.location.href进行页面跳转
+            if (actionUrl) {
+                window.location.href = actionUrl;
+            } else {
+                console.error('表单缺少action属性');
+            }
         } else {
             alert("请确保所有字段填写正确并且同意协议！");
         }
