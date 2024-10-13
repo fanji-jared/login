@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link rel="stylesheet" type="text/css" href="index.css">
+    <!-- 引入 jQuery -->
     <script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     <title>登录FJ账号</title>
 </head>
@@ -149,34 +150,41 @@
         FullLogoBackground("#logimg");
     });
 
-    document.getElementById('loginForm').addEventListener('submit', function (event) {
-        event.preventDefault();
-        // 获取除了提交按钮外的所有input元素
-        var inputs = document.querySelectorAll('#loginForm input:not([type="submit"])');
-        var checkbox = document.getElementById('agreementCheckbox');
-        // 检查是否有空值
-        var hasEmptyInput = Array.from(inputs).some(function (input) {
-            return input.type === 'text' || input.type === 'number' || input.type === 'password' || input.type === 'checkbox' ? !input.value.trim() : false;
-        });
-        // 检查checkbox是否被选中
-        var isCheckboxChecked = checkbox.checked;
-        // 检查密码是否为固定值
-        var passwordInput = document.querySelector('input[name="password"]');
-        var isPasswordCorrect = passwordInput.value === '114514';
-        // 验证是否通过
-        if (!hasEmptyInput && isCheckboxChecked && isPasswordCorrect) {
-            // this.submit(); // 提交表单
-            // 获取表单的action属性，即目标URL
-            const actionUrl = document.getElementById('loginForm').getAttribute('action');
-            // 使用window.location.href进行页面跳转
-            if (actionUrl) {
-                window.location.href = actionUrl;
+    $(document).ready(function () {
+        $('#loginForm').on('submit', function (event) {
+            event.preventDefault();
+
+            // 获取除了提交按钮外的所有input元素
+            var inputs = $('input:not([type="submit"])', this);
+            var checkbox = $('#agreementCheckbox');
+
+            // 检查是否有空值
+            var hasEmptyInput = inputs.filter(function () {
+                return $(this).is(':text, input[type=\'number\'], :password, :checkbox') && !$.trim($(this).val());
+            }).length > 0;
+
+            // 检查checkbox是否被选中
+            var isCheckboxChecked = checkbox.is(':checked');
+
+            // 检查密码是否为固定值
+            var passwordInput = $('input[name="password"]', this);
+            var isPasswordCorrect = passwordInput.val() === '114514';
+
+            // 验证是否通过
+            if (!hasEmptyInput && isCheckboxChecked && isPasswordCorrect) {
+                // 获取表单的action属性，即目标URL
+                var actionUrl = $(this).attr('action');
+                // 使用window.location.href进行页面跳转
+                if (actionUrl) {
+                    window.location.href = actionUrl;
+                } else {
+                    console.error('表单缺少action属性');
+                }
             } else {
-                console.error('表单缺少action属性');
+                // alert("请确保字段填写正确且同意协议,密码为114514！");
+                $(".register").append('<p style="color: red;text-align: center;">请确保字段填写正确且同意协议,密码为114514！</p>');
             }
-        } else {
-            alert("请确保所有字段填写正确并且同意协议！密码必须为114514");
-        }
+        });
     });
 </script>
 
